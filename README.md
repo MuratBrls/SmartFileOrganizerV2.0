@@ -22,6 +22,7 @@
 
 **Smart File Organizer**, bilgisayarınızda karmaşa yaratan dosyaları (İndirilenler, Masaüstü vb.) tek tıkla veya tamamen otomatik olarak düzenleyen gelişmiş bir araçtır.
 
+*   **🌍 Çoklu Dil Desteği (TR/EN):** Sağ üst köşeden Türkçe veya İngilizce dilini seçebilirsiniz.
 *   **Akıllı Ayrıştırma:** Resimleri, videoları, belgeleri ve kurulum dosyalarını tanır; hepsini ayrı klasörlere toplar.
 *   **Sessiz Takipçi (Watchdog):** Siz çalışırken arka planda bir klasörü izler. Oraya bir dosya kaydettiğiniz anda onu yakalar ve ait olduğu yere taşır.
 *   **İşletim Sistemi Entegrasyonu:** Windows sağ tık menüsüne yerleşerek, programı açmanıza bile gerek kalmadan her yeri düzenlemenizi sağlar.
