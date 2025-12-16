@@ -1,92 +1,133 @@
 # 🤖 Smart File Organizer v2.0
 
-![Python](https://img.shields.io/badge/Python-3.x-blue.svg) ![CustomTkinter](https://img.shields.io/badge/GUI-CustomTkinter-green.svg) ![Platform](https://img.shields.io/badge/Platform-Windows-blue)
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python) 
+![CustomTkinter](https://img.shields.io/badge/GUI-CustomTkinter-green?style=for-the-badge) 
+![Platform](https://img.shields.io/badge/Platform-Windows%2010%2F11-0078D6?style=for-the-badge&logo=windows)
+![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 
-**Smart File Organizer**, bilgisayarınızdaki dağınık klasörleri yapay zeka destekli mantıkla (uzantı bazlı) saniyeler içinde düzenleyen, **Canlı Takip (Monitoring)** özelliğine sahip modern bir masaüstü uygulamasıdır.
-
----
-
-## ✨ Özellikler (v2.0)
-
-*   **📂 Otomatik Düzenleme:** Dosyaları türlerine göre (Video, Müzik, Resim, Belge vb.) ilgili klasörlere taşır.
-*   **👁️ Canlı Takip (Real-time Monitoring):** Seçilen klasörü izler; yeni bir dosya eklendiğinde veya indirildiğinde **anında** yakalar ve düzenler.
-*   **🖱️ Sağ Tık Entegrasyonu (Context Menu):**
-    *   Herhangi bir klasöre sağ tıklayıp **"Burayı Akıllı Düzenle"** diyebilirsiniz.
-    *   Masaüstüne sağ tıklayıp **"Yeni Akıllı Klasör Oluştur"** diyerek izlenen özel bir klasör yaratabilirsiniz.
-*   **👻 Sistem Tepsisi (System Tray):** Uygulama arka planda sessizce çalışır. Çarpı (X) ile kapattığınızda saat yanındaki simge durumuna küçülür.
-*   **🔒 Tek Kopya (Single Instance):** Arka planda sadece bir uygulama çalışır, kaynak tüketimini minimumda tutar.
+**[🇹🇷 Türkçe](#-türkçe-kullanım-rehberi) | [🇺🇸 English](#-english-user-guide)**
 
 ---
 
-## 🚀 İndir ve Kullan (Basit Yöntem)
-
-Kodlarla uğraşmanıza gerek yok! Sadece **tek bir dosya** ile programı çalıştırabilirsiniz.
-
-1.  GitHub sayfasındaki **Releases** kısmından veya klasör içindeki `Release` klasöründen **`SmartOrganizer.exe`** dosyasını indirin.
-2.  Çift tıklayıp çalıştırın.
-3.  Hepsi bu kadar! 🎉
-
-*(Not: İlk açılışta Windows Defender uyarı verebilir, "Yine de çalıştır" diyerek devam edebilirsiniz.)*
+<div align="center">
+  <h3>Dağınık masaüstlerine ve klasörlere son! / Say goodbye to messy desktops!</h3>
+  <p>Yapay zeka mantığıyla çalışan, arka planda sessizce klasörlerinizi düzenleyen ve izleyen akıllı asistan.</p>
+</div>
 
 ---
 
-## 💻 Geliştirici Kurulumu (Kaynak Kod)
+# 🇹🇷 Türkçe Kullanım Rehberi
 
-Eğer kodu incelemek veya geliştirmek isterseniz:
+**Smart File Organizer**, bilgisayarınızdaki dosya kaosunu yönetmek için geliştirilmiş, **v2.0** sürümüyle tamamen yenilenmiş bir araçtır. Artık sadece düzenlemekle kalmaz, klasörlerinizi **canlı olarak izler**.
 
-1.  Projeyi klonlayın.
-2.  Gerekli kütüphaneleri yükleyin:
-    ```bash
-    pip install -r requirements.txt
-    ```
-3.  Uygulamayı başlatın:
-    ```bash
-    python main.py
-    ```
+## ✨ Temel Özellikler
 
----
+1.  **📂 Akıllı Dosya Ayrıştırma:** Dosyaları uzantılarına göre (Resim, Video, Belge, Ses...) algılar ve ilgili klasörlere taşır.
+2.  **👁️ Canlı Takip Modu (Watchdog):** Bir klasörü "Canlı Takip" moduna aldığınızda, oraya düşen her dosya anında yakalanır ve yerleştirilir. Sürükle-bırak veya indirme yapmanız fark etmez.
+3.  **🖱️ Sağ Tık Entegrasyonu (Context Menu):**
+    *   **"Burayı Akıllı Düzenle":** Herhangi bir klasöre sağ tıklayıp anında düzenleyebilirsiniz.
+    *   **"Yeni Akıllı Klasör Oluştur":** Masaüstüne veya herhangi bir yere sağ tıklayıp, izlenen özel bir klasör yaratabilirsiniz.
+4.  **👻 Sistem Tepsisi (System Tray):** Programı kapatsanız bile (X), saatin yanındaki tepsiye küçülür ve arka planda çalışmaya devam eder.
+5.  **⚡ Tek Dosya (Portable):** Kurulum gerektirmez. Tek bir `.exe` dosyasıdır.
 
-## 📖 Kullanım
+## 🚀 İndirme ve Kurulum
+
+Programı kullanmak için **Python bilmenize gerek yoktur.**
+
+1.  Bu sayfadaki **Releases** bölümünden (veya proje içindeki `Release` klasöründen) **`SmartOrganizer.exe`** dosyasını indirin.
+2.  İstediğiniz bir yere (örn: Masaüstü) koyun.
+3.  Çift tıklayıp çalıştırın.
+    *   *İlk seferde Windows Defender uyarı verebilir ("Bilinmeyen Yayıncı"). "Ek Bilgi" -> "Yine de Çalıştır" diyerek devam edin.*
+
+## 📖 Nasıl Kullanılır?
 
 ### 1. Manuel Düzenleme
-1.  Uygulamayı açın.
-2.  **"Seç"** butonu ile düzenlemek istediğiniz klasörü seçin.
-3.  **"Şimdi Temizle"** butonuna basın.
+*   Programı açın.
+*   **"Seç"** butonuyla dağınık bir klasörü seçin.
+*   **"Şimdi Temizle"** butonuna basın. Dosyalar anında kategorilere ayrılacaktır.
 
-### 2. Canlı Takip Modu
-1.  Bir klasör seçin.
-2.  **"CANLI TAKİP MODU"** anahtarını açın.
-3.  Artık o klasöre atılan her dosya otomatik olarak kategorize edilecektir.
+### 2. Canlı Takip (Otomasyon)
+*   Hedef klasörü seçin.
+*   Alttaki **"CANLI TAKİP MODU"** anahtarını açın (Yeşil olur).
+*   Artık o klasöre atılan her şey otomatik düzenlenir. Programı tepsiye küçülterek (pencereyi kapatarak) işinize devam edebilirsiniz.
 
-### 3. Sağ Tık Entegrasyonu
-1.  Uygulama içindeki **"Sisteme Entegre Et (Sağ Tık)"** butonuna **bir kez** tıklayın.
-2.  Artık Windows sağ tık menüsünde kısayolları görebilirsiniz.
+### 3. Sağ Tık Menüsünü Açmak
+*   Program açıkken sağ üstteki **"Sisteme Entegre Et (Sağ Tık)"** butonuna tıklayın.
+*   Eğer yönetici izni gerekirse, program otomatik olarak kapanıp **Yönetici Modunda** tekrar açılacaktır. Onay verin.
+*   Log ekranında "✅ BAŞARILI" yazısını gördüğünüzde işlem tamamdır.
 
 ---
 
-## 🗂️ Desteklenen Dosya Türleri
+## 🗂️ Dosya Kategorileri
 
-| Klasör | Uzantılar |
+Program dosyaları şu klasörlere ayırır:
+
+| Ana Klasör | İçerdiği Uzantılar |
 | :--- | :--- |
-| **Gorseller** | `jpg`, `png`, `gif`, `webp`, `heic`, `svg`... |
-| **Videolar** | `mp4`, `mov`, `avi`, `mkv`, `webm`... |
-| **Muzik** | `mp3`, `wav`, `flac`, `spotify`... |
-| **Belgeler** | `pdf`, `docx`, `txt`, `xlsx`, `pptx`... |
-| **Arsivler** | `zip`, `rar`, `7z`... |
-| **Programlar** | `exe`, `msi`, `apk`... |
-| **Kodlama** | `py`, `js`, `html`, `css`... |
+| **🖼️ Gorseller** | `.jpg`, `.jpeg`, `.png`, `.gif`, `.webp`, `.svg`, `.heic`... |
+| **🎬 Videolar** | `.mp4`, `.mov`, `.avi`, `.mkv`, `.flv`, `.webm`... |
+| **🎵 Muzik** | `.mp3`, `.wav`, `.aac`, `.flac`, `.spotify`... |
+| **📄 Belgeler** | `.pdf`, `.docx`, `.doc`, `.txt`, `.xlsx`, `.pptx`, `.csv`... |
+| **📦 Arsivler** | `.zip`, `.rar`, `.7z`, `.tar`, `.gz`, `.iso`... |
+| **💾 Programlar** | `.exe`, `.msi`, `.bat`, `.apk`... |
+| **💻 Kodlama** | `.py`, `.js`, `.html`, `.css`, `.json`, `.sql`... |
 
 ---
 
-## 🛠️ Geliştirici Notları
+# 🇺🇸 English User Guide
 
-Bu proje **Python** kullanılarak geliştirilmiştir.
-*   **GUI:** CustomTkinter
-*   **İzleme:** Watchdog
-*   **Arka Plan:** Pystray
-*   **Sistem:** Winreg, Ctypes
+**Smart File Organizer** is a modern, AI-logic powered desktop tool designed to organize your chaotic folders in seconds. With version **2.0**, it acts as a background agent enabling **Real-time Monitoring**.
+
+## ✨ Key Features
+
+1.  **📂 Smart Sorting:** Automatically detects file types (Images, Videos, Docs...) and moves them to appropriate folders.
+2.  **👁️ Live Monitoring (Watchdog):** Watches a specific folder for changes. Any file downloaded, pasted, or moved there is instantly organized.
+3.  **🖱️ Context Menu Integration:**
+    *   **"Smart Organize Here":** Right-click any folder to clean it up instantly.
+    *   **"Create New Smart Folder":** Right-click on background to create a strictly monitored folder.
+4.  **👻 System Tray:** Minimized to the system tray (near clock) instead of closing, keeping your folders watched silently.
+5.  **⚡ Portable:** Single `.exe` file. No installation required.
+
+## 🚀 Download & Install
+
+1.  Download **`SmartOrganizer.exe`** from the **Releases** section (or the `Release` folder in this repo).
+2.  Place it anywhere (e.g., Desktop).
+3.  Double-click to run.
+
+## 📖 How to Use
+
+### 1. Manual Cleanup
+*   Open the app.
+*   Select a target folder using **"Seç"** (Select).
+*   Click **"Şimdi Temizle"** (Clean Now).
+
+### 2. Live Monitoring
+*   Select a folder.
+*   Toggle the **"CANLI TAKİP MODU"** switch to ON.
+*   You can now close the window; it will sit in the system tray and organize incoming files automatically.
+
+### 3. Enabling Right-Click Menu
+*   Click the orange **"Sisteme Entegre Et"** (Integrate to System) button.
+*   The app might restart itself to ask for **Admin Privileges**. Click Yes.
+*   Once done, you can right-click any folder to use the features.
 
 ---
 
-**Lisans:** MIT License
-**Copyright © 2025 Murat**
+## 🧑‍💻 For Developers (Building from Source)
+
+If you want to modify the code or build the EXE yourself:
+
+### Requirements
+*   Python 3.10+
+*   `pip install -r requirements.txt`
+
+### Build Command (PyInstaller)
+To create the single-file executable:
+```powershell
+pyinstaller --noconsole --onefile --collect-all customtkinter --collect-all watchdog --collect-all pystray --name "SmartOrganizer" main.py
+```
+
+---
+
+## 📜 License
+MIT License. Copyright © 2025 Murat.
