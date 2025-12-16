@@ -1,0 +1,5 @@
+{
+  "name": "Smart File Organizer",
+  "description": "A modern, browser-based file organization tool that automatically sorts files into categories using the File System Access API.",
+  "requestFramePermissions": []
+}
