@@ -1,5 +1,4 @@
 import socket
-
 import customtkinter as ctk
 import os
 import sys
@@ -40,20 +39,85 @@ class OrganizerHandler(FileSystemEventHandler):
         if not event.is_directory:
             self.callback(event.dest_path)
 
+# --- Language Definitions ---
+LANGUAGES = {
+    "TR": {
+        "title": "Smart File Organizer v2.0",
+        "header_title": "🤖 Smart Organizer & Watcher",
+        "btn_integrate": "Sisteme Entegre Et (Sağ Tık)",
+        "placeholder": "Hedef Klasör...",
+        "btn_select": "📂 Seç",
+        "btn_organize": "🧹 Şimdi Düzenle",
+        "switch_monitor_on": "CANLI TAKİP MODU: AÇIK",
+        "switch_monitor_off": "CANLI TAKİP MODU: KAPALI",
+        "log_manual_start": "--- Manuel Düzenleme Başladı ---",
+        "log_done": "--- Bitti ---",
+        "log_target": "Hedef: {}",
+        "log_moved": "✅ Taşındı: {} -> {}",
+        "log_in_use": "⚠️ Dosya kullanımda, sonra tekrar denenecek: {}",
+        "log_error": "❌ Hata: {}",
+        "log_monitor_watch": "👁️ İzleniyor: {}",
+        "log_monitor_reboot": "⚠️ Takibi durdurmak için programı yeniden başlatın.",
+        "log_select_folder": "⚠️ Geçerli bir klasör seçin.",
+        "log_admin_req": "⚠️ HATA: Yönetici izni gerekli!",
+        "log_restarting": "🔒 Yönetici izni alınıyor, program yeniden başlatılacak...",
+        "log_context_success": "✅ BAŞARILI! Sağ tık menüleri eklendi.",
+        "popup_title": "Yeni Klasör Oluştur",
+        "popup_text": "Akıllı Klasör İsmi Giriniz:",
+        "log_new_smart_folder": "✨ Yeni Akıllı Klasör Oluşturuldu: {}",
+        "tray_show": "Göster",
+        "tray_exit": "Çıkış",
+        "ctx_organize": "📂 Burayı Akıllı Düzenle",
+        "ctx_new": "✨ Yeni Akıllı Klasör Oluştur",
+        "sys_ready": "Sistem hazır."
+    },
+    "EN": {
+        "title": "Smart File Organizer v2.0",
+        "header_title": "🤖 Smart Organizer & Watcher",
+        "btn_integrate": "Integrate to System (Right Click)",
+        "placeholder": "Target Folder...",
+        "btn_select": "📂 Select",
+        "btn_organize": "🧹 Organize Now",
+        "switch_monitor_on": "LIVE MONITOR: ON",
+        "switch_monitor_off": "LIVE MONITOR: OFF",
+        "log_manual_start": "--- Manual Organization Started ---",
+        "log_done": "--- Done ---",
+        "log_target": "Target: {}",
+        "log_moved": "✅ Moved: {} -> {}",
+        "log_in_use": "⚠️ File in use, will retry: {}",
+        "log_error": "❌ Error: {}",
+        "log_monitor_watch": "👁️ Watching: {}",
+        "log_monitor_reboot": "⚠️ Restart app to stop monitoring completely.",
+        "log_select_folder": "⚠️ Please select a valid folder.",
+        "log_admin_req": "⚠️ ERROR: Admin privileges required!",
+        "log_restarting": "🔒 Requesting admin rights, restarting...",
+        "log_context_success": "✅ SUCCESS! Context menus added.",
+        "popup_title": "Create New Folder",
+        "popup_text": "Enter Smart Folder Name:",
+        "log_new_smart_folder": "✨ New Smart Folder Created: {}",
+        "tray_show": "Show",
+        "tray_exit": "Exit",
+        "ctx_organize": "📂 Smart Organize Here",
+        "ctx_new": "✨ Create New Smart Folder",
+        "sys_ready": "System ready."
+    }
+}
+
 class App(ctk.CTk):
     def __init__(self, is_primary=True):
         super().__init__()
         
-        self.title("Smart File Organizer v2.0")
+        self.current_lang_code = "TR"
+        self.lang = LANGUAGES[self.current_lang_code]
+
+        self.title(self.lang["title"])
         self.geometry("750x550")
-        self.observer = Observer() # Initialize observer once
+        self.observer = Observer() 
         self.observer.start()
         self.is_monitoring = False
-        self.watched_folders = [] # Keep track
+        self.watched_folders = [] 
 
         self.protocol("WM_DELETE_WINDOW", self.hide_window)
-
-        # ... (Layout remains similar, but ensure we don't re-init observer in toggle) ...
         
         # --- Grid Layout ---
         self.grid_columnconfigure(0, weight=1)
@@ -63,13 +127,19 @@ class App(ctk.CTk):
         self.header_frame = ctk.CTkFrame(self, corner_radius=0)
         self.header_frame.grid(row=0, column=0, sticky="ew")
         
-        lbl_title = ctk.CTkLabel(self.header_frame, text="🤖 Smart Organizer & Watcher", font=("Segoe UI", 20, "bold"))
-        lbl_title.pack(pady=10, padx=20, side="left")
+        self.lbl_title = ctk.CTkLabel(self.header_frame, text=self.lang["header_title"], font=("Segoe UI", 20, "bold"))
+        self.lbl_title.pack(pady=10, padx=20, side="left")
+
+        # Language Selector
+        self.lang_var = ctk.StringVar(value="TR")
+        self.lang_menu = ctk.CTkOptionMenu(self.header_frame, values=["TR", "EN"], 
+                                         command=self.change_language, width=70, variable=self.lang_var)
+        self.lang_menu.pack(pady=10, padx=5, side="right")
 
         # Integration Button
-        btn_integrate = ctk.CTkButton(self.header_frame, text="Sisteme Entegre Et (Sağ Tık)", 
+        self.btn_integrate = ctk.CTkButton(self.header_frame, text=self.lang["btn_integrate"], 
                                       command=self.add_context_menu, fg_color="#e67e22", hover_color="#d35400")
-        btn_integrate.pack(pady=10, padx=20, side="right")
+        self.btn_integrate.pack(pady=10, padx=10, side="right")
 
         # --- Main Area ---
         self.main_frame = ctk.CTkFrame(self)
@@ -77,11 +147,11 @@ class App(ctk.CTk):
         self.main_frame.grid_columnconfigure(0, weight=1)
 
         # Folder Selection
-        self.path_entry = ctk.CTkEntry(self.main_frame, placeholder_text="Hedef Klasör...", width=450)
+        self.path_entry = ctk.CTkEntry(self.main_frame, placeholder_text=self.lang["placeholder"], width=450)
         self.path_entry.grid(row=0, column=0, padx=20, pady=(30, 10))
 
-        btn_select = ctk.CTkButton(self.main_frame, text="📂 Seç", width=50, command=self.select_folder)
-        btn_select.grid(row=0, column=1, padx=(0, 20), pady=(30, 10))
+        self.btn_select = ctk.CTkButton(self.main_frame, text=self.lang["btn_select"], width=50, command=self.select_folder)
+        self.btn_select.grid(row=0, column=1, padx=(0, 20), pady=(30, 10))
 
         # Log Box
         self.log_box = ctk.CTkTextbox(self.main_frame, height=250)
@@ -92,13 +162,13 @@ class App(ctk.CTk):
         self.control_frame.grid(row=2, column=0, columnspan=2, pady=20)
 
         # Run Once Button
-        self.btn_run_once = ctk.CTkButton(self.control_frame, text="🧹 Şimdi Temizle", 
+        self.btn_run_once = ctk.CTkButton(self.control_frame, text=self.lang["btn_organize"], 
                                           command=self.run_once, width=150, height=40, font=("Segoe UI", 14, "bold"))
         self.btn_run_once.pack(side="left", padx=10)
 
-        # Live Monitor Switch (Visual only now, monitoring is managed internally)
+        # Live Monitor Switch
         self.switch_var = ctk.StringVar(value="off")
-        self.switch_monitor = ctk.CTkSwitch(self.control_frame, text="CANLI TAKİP MODU", 
+        self.switch_monitor = ctk.CTkSwitch(self.control_frame, text=self.lang["switch_monitor_off"], 
                                             command=self.toggle_monitoring_ui, variable=self.switch_var, onvalue="on", offvalue="off",
                                             font=("Segoe UI", 12, "bold"), button_color="#2ecc71", progress_color="#27ae60")
         self.switch_monitor.pack(side="left", padx=20)
@@ -110,15 +180,31 @@ class App(ctk.CTk):
         if is_primary:
             threading.Thread(target=self.start_ipc_server, daemon=True).start()
 
+    def change_language(self, choice):
+        self.current_lang_code = choice
+        self.lang = LANGUAGES[choice]
+        
+        # Update UI Elements
+        self.title(self.lang["title"])
+        self.lbl_title.configure(text=self.lang["header_title"])
+        self.btn_integrate.configure(text=self.lang["btn_integrate"])
+        self.path_entry.configure(placeholder_text=self.lang["placeholder"])
+        self.btn_select.configure(text=self.lang["btn_select"])
+        self.btn_run_once.configure(text=self.lang["btn_organize"])
+        
+        # Determine switch text based on state
+        switch_text = self.lang["switch_monitor_on"] if self.switch_var.get() == "on" else self.lang["switch_monitor_off"]
+        self.switch_monitor.configure(text=switch_text)
+        
+        # Note: Tray icon menu needs restart to change, but that's acceptable.
+        
     def start_ipc_server(self):
         server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         server.bind(('127.0.0.1', PORT))
-        self.log(f"System ready.")
+        self.log(self.lang["sys_ready"])
         while True:
             data, addr = server.recvfrom(1024)
             message = data.decode('utf-8')
-            # Handle incoming commands from context menu usage
-            # Expected format: "CMD|ARGS"
             self.after(0, lambda m=message: self.handle_ipc_command(m))
 
     def handle_ipc_command(self, message):
@@ -143,7 +229,7 @@ class App(ctk.CTk):
 
     def create_smart_folder_flow(self, parent_dir):
         # --- POPUP: Ask for folder name ---
-        dialog = ctk.CTkInputDialog(text="Akıllı Klasör İsmi Giriniz:", title="Yeni Klasör Oluştur")
+        dialog = ctk.CTkInputDialog(text=self.lang["popup_text"], title=self.lang["popup_title"])
         dialog.after(100, dialog.focus_force)
         name = dialog.get_input()
         
@@ -166,29 +252,30 @@ class App(ctk.CTk):
         try:
             os.makedirs(new_folder)
             self.path_entry.insert(0, new_folder)
-            self.log(f"✨ Yeni Akıllı Klasör Oluşturuldu: {new_folder}")
+            self.log(self.lang["log_new_smart_folder"].format(new_folder))
             self.add_watch(new_folder)
         except Exception as e:
-            self.log(f"Hata: {e}")
+            self.log(self.lang["log_error"].format(e))
 
     def add_watch(self, folder):
         if folder not in self.watched_folders:
             event_handler = OrganizerHandler(self.organize_file)
             self.observer.schedule(event_handler, folder, recursive=False)
             self.watched_folders.append(folder)
-            self.log(f"👁️ İzleniyor: {folder}")
+            self.log(self.lang["log_monitor_watch"].format(folder))
             self.switch_var.set("on")
+            self.switch_monitor.configure(text=self.lang["switch_monitor_on"])
 
     def toggle_monitoring_ui(self):
         # Allow user to manually toggle current folder
         folder = self.path_entry.get()
         if self.switch_var.get() == "on":
+             self.switch_monitor.configure(text=self.lang["switch_monitor_on"])
              if os.path.exists(folder):
                  self.add_watch(folder)
         else:
-             # Removing specific watch is hard with watchdog without storing watch_id
-             # For simplicity, we just log it (implementation limitation in this quick update)
-             self.log("⚠️ Takibi durdurmak için programı yeniden başlatın.")
+             self.switch_monitor.configure(text=self.lang["switch_monitor_off"])
+             self.log(self.lang["log_monitor_reboot"])
 
     def hide_window(self):
         self.withdraw()
@@ -198,8 +285,11 @@ class App(ctk.CTk):
         self.lift()
         self.focus_force()
 
-    def quit_app(self, icon, item):
-        icon.stop()
+    def quit_app(self, icon=None, item=None):
+        if icon:
+            icon.stop()
+        elif self.tray_icon: 
+            self.tray_icon.stop()
         self.quit()
         sys.exit()
 
@@ -215,10 +305,12 @@ class App(ctk.CTk):
         return image
 
     def setup_tray_icon(self):
-        menu = (pystray.MenuItem('Göster', lambda icon, item: self.after(0, self.show_window), default=True),
-                pystray.MenuItem('Çıkış', self.quit_app))
-        icon = pystray.Icon("name", self.create_image(), "Smart Organizer", menu)
-        icon.run()
+        # Tray menu text is static for now, defaults to TR/EN from init, 
+        # but pystray is hard to update dynamically. We will use generic or current lang at startup.
+        menu = (pystray.MenuItem(self.lang["tray_show"], lambda icon, item: self.after(0, self.show_window), default=True),
+                pystray.MenuItem(self.lang["tray_exit"], self.quit_app))
+        self.tray_icon = pystray.Icon("name", self.create_image(), "Smart Organizer", menu)
+        self.tray_icon.run()
 
     def log(self, msg):
         try:
@@ -231,7 +323,7 @@ class App(ctk.CTk):
         if folder:
             self.path_entry.delete(0, "end")
             self.path_entry.insert(0, folder)
-            self.log(f"Hedef: {folder}")
+            self.log(self.lang["log_target"].format(folder))
 
     def organize_file(self, file_path):
         """Moves a single file to its category folder"""
@@ -241,7 +333,9 @@ class App(ctk.CTk):
         # Skip self, hidden files, or temporary downloads
         if filename.startswith("SmartOrganizer") or filename.startswith(".") or ".tmp" in filename or ".crdownload" in filename: 
             return 
-
+        
+        # ... (rest is largely same logic, just log strings changed)
+        # Re-implementing logic to ensure log strings are updated
         folder_path = os.path.dirname(file_path)
         _, ext = os.path.splitext(filename)
         ext = ext.lower()
@@ -253,11 +347,8 @@ class App(ctk.CTk):
                 os.makedirs(target_dir, exist_ok=True)
                 
                 try:
-                    # Wait briefly to ensure file is fully written (prevents errors with large downloads)
                     time.sleep(0.5) 
-                    
                     dest = os.path.join(target_dir, filename)
-                    # Handle Duplicate Names
                     if os.path.exists(dest):
                         base, extension = os.path.splitext(filename)
                         timestamp = int(time.time())
@@ -265,13 +356,13 @@ class App(ctk.CTk):
                     
                     try:
                         shutil.move(file_path, dest)
-                        self.log(f"✅ Taşındı: {filename} -> {category}")
+                        self.log(self.lang["log_moved"].format(filename, category))
                         moved = True
                     except PermissionError:
-                         self.log(f"⚠️ Dosya kullanımda, sonra tekrar denenecek: {filename}")
+                         self.log(self.lang["log_in_use"].format(filename))
                          
                 except Exception as e:
-                    self.log(f"❌ Hata: {e}")
+                    self.log(self.lang["log_error"].format(e))
                 break
         
         if not moved:
@@ -280,29 +371,36 @@ class App(ctk.CTk):
     def run_once(self):
         folder = self.path_entry.get()
         if not os.path.exists(folder): 
-            self.log("⚠️ Geçerli bir klasör seçin.")
+            self.log(self.lang["log_select_folder"])
             return
         
-        self.log("--- Manuel Temizlik Başladı ---")
+        self.log(self.lang["log_manual_start"])
         files = [os.path.join(folder, f) for f in os.listdir(folder) if os.path.isfile(os.path.join(folder, f))]
         for f in files:
             self.organize_file(f)
-        self.log("--- Bitti ---")
+        self.log(self.lang["log_done"])
         
     def add_context_menu(self):
         if not ctypes.windll.shell32.IsUserAnAdmin():
-            self.log("⚠️ HATA: Yönetici izni gerekli! Programı 'Yönetici Olarak Çalıştır'.")
+            self.log(self.lang["log_restarting"])
+            try:
+                # Restart as admin with a special flag
+                params = " ".join(sys.argv[1:]) + " --restarting"
+                ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, params, None, 1)
+                self.quit_app() # Quit current instance
+            except Exception as e:
+                self.log(self.lang["log_error"].format(e))
             return
 
         exe_path = sys.executable
         if not exe_path.endswith(".exe"):
-            self.log("⚠️ Bilgi: .py üzerinden çalışıyorsunuz. EXE olunca tam yol kaydedilir.")
+            self.log("⚠️ Python .py runtime detected. EXE path required for registry.")
         
         try:
             # 1. Context Menu for Directories
             key_path = r"Directory\shell\SmartOrganizer"
             with winreg.CreateKey(winreg.HKEY_CLASSES_ROOT, key_path) as key:
-                winreg.SetValue(key, "", winreg.REG_SZ, "📂 Burayı Akıllı Düzenle")
+                winreg.SetValue(key, "", winreg.REG_SZ, self.lang["ctx_organize"])
                 winreg.SetValueEx(key, "Icon", 0, winreg.REG_SZ, exe_path)
                 with winreg.CreateKey(key, "command") as cmd_key:
                     winreg.SetValue(cmd_key, "", winreg.REG_SZ, f'"{exe_path}" "%1"')
@@ -310,15 +408,15 @@ class App(ctk.CTk):
             # 2. Context Menu for Background (New Smart Folder)
             bg_key_path = r"Directory\Background\shell\SmartOrganizerNew"
             with winreg.CreateKey(winreg.HKEY_CLASSES_ROOT, bg_key_path) as key:
-                winreg.SetValue(key, "", winreg.REG_SZ, "✨ Yeni Akıllı Klasör Oluştur")
+                winreg.SetValue(key, "", winreg.REG_SZ, self.lang["ctx_new"])
                 winreg.SetValueEx(key, "Icon", 0, winreg.REG_SZ, exe_path)
                 with winreg.CreateKey(key, "command") as cmd_key:
                     winreg.SetValue(cmd_key, "", winreg.REG_SZ, f'"{exe_path}" --create "%V"')
 
-            self.log("✅ BAŞARILI! Sağ tık menüleri eklendi.")
+            self.log(self.lang["log_context_success"])
 
         except Exception as e:
-            self.log(f"Hata: {e}")
+            self.log(self.lang["log_error"].format(e))
 
     # --- UPDATED check_startup_args ---
     # This is now only called by the PRIMARY instance at startup
@@ -329,6 +427,10 @@ class App(ctk.CTk):
 # ... Main execution block ...
 
 if __name__ == "__main__":
+    # If restarting, wait for the old instance to release the port
+    if "--restarting" in sys.argv:
+        time.sleep(1.5)
+
     # check port
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     try:
