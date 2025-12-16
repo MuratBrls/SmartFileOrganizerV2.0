@@ -30,16 +30,26 @@
 4.  **👻 Sistem Tepsisi (System Tray):** Programı kapatsanız bile (X), saatin yanındaki tepsiye küçülür ve arka planda çalışmaya devam eder.
 5.  **⚡ Tek Dosya (Portable):** Kurulum gerektirmez. Tek bir `.exe` dosyasıdır.
 
-## 🚀 İndirme ve Kurulum
+## 🚀 İndirme ve Kurulum (Adım Adım)
 
-Programı kullanmak için **Python bilmenize gerek yoktur.**
+Programın kurulumu yoktur, ancak rahat kullanım için aşağıdaki adımları takip etmeniz önerilir:
 
-1.  Bu sayfadaki **Releases** bölümünden (veya proje içindeki `Release` klasöründen) **`SmartOrganizer.exe`** dosyasını indirin.
-2.  İstediğiniz bir yere (örn: Masaüstü) koyun.
-3.  Çift tıklayıp çalıştırın.
-    *   *İlk seferde Windows Defender uyarı verebilir ("Bilinmeyen Yayıncı"). "Ek Bilgi" -> "Yine de Çalıştır" diyerek devam edin.*
+1.  **İndirme:** Bu sayfadaki **Releases** bölümünden (veya proje içindeki `Release` klasöründen) **`SmartOrganizer.exe`** dosyasını bilgisayarınıza indirin.
+2.  **Konumlandırma:** İndirdiğiniz dosyayı güvenli bir klasöre (Örn: `Belgelerim` içine) taşıyın.
+3.  **Kısayol Oluşturma:**
+    *   `SmartOrganizer.exe` dosyasına sağ tıklayın.
+    *   **"Gönder"** -> **"Masaüstü (kısayol oluştur)"** seçeneğini seçin.
+    *   Böylece masaüstünüzden programa kolayca erişebilirsiniz.
 
 ## 📖 Nasıl Kullanılır?
+
+### ⚠️ İlk Çalıştırma ve Yönetici İzni
+Program sistemin sağ tık menüsüne yerleşmek için **Yönetici Yetkisine** ihtiyaç duyar.
+
+1.  Masaüstündeki kısayola (veya exe dosyasına) **Sağ Tıklayın** ve **"Yönetici olarak çalıştır"** deyin.
+    *   *(Normal açarsanız da entegrasyon butonuna bastığınızda otomatik olarak yönetici izni isteyecektir, "Evet" diyerek onaylayın.)*
+2.  Açılan pencerede sağ üstteki turuncu **"Sisteme Entegre Et (Sağ Tık)"** butonuna basın.
+3.  Log ekranında *"✅ BAŞARILI! Sağ tık menüleri eklendi."* yazısını gördüğünüzde işlem tamamdır.
 
 ### 1. Manuel Düzenleme
 *   Programı açın.
@@ -49,12 +59,7 @@ Programı kullanmak için **Python bilmenize gerek yoktur.**
 ### 2. Canlı Takip (Otomasyon)
 *   Hedef klasörü seçin.
 *   Alttaki **"CANLI TAKİP MODU"** anahtarını açın (Yeşil olur).
-*   Artık o klasöre atılan her şey otomatik düzenlenir. Programı tepsiye küçülterek (pencereyi kapatarak) işinize devam edebilirsiniz.
-
-### 3. Sağ Tık Menüsünü Açmak
-*   Program açıkken sağ üstteki **"Sisteme Entegre Et (Sağ Tık)"** butonuna tıklayın.
-*   Eğer yönetici izni gerekirse, program otomatik olarak kapanıp **Yönetici Modunda** tekrar açılacaktır. Onay verin.
-*   Log ekranında "✅ BAŞARILI" yazısını gördüğünüzde işlem tamamdır.
+*   Programı **"X"** ile kapatsanız bile saatin yanındaki sistem tepsisine küçülecek ve arka planda çalışmaya devam edecektir.
 
 ---
 
