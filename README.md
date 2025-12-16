@@ -18,9 +18,23 @@
 
 ---
 
-## 🚀 Kurulum
+## 🚀 İndir ve Kullan (Basit Yöntem)
 
-1.  Projeyi indirin veya klonlayın.
+Kodlarla uğraşmanıza gerek yok! Sadece **tek bir dosya** ile programı çalıştırabilirsiniz.
+
+1.  GitHub sayfasındaki **Releases** kısmından veya klasör içindeki `Release` klasöründen **`SmartOrganizer.exe`** dosyasını indirin.
+2.  Çift tıklayıp çalıştırın.
+3.  Hepsi bu kadar! 🎉
+
+*(Not: İlk açılışta Windows Defender uyarı verebilir, "Yine de çalıştır" diyerek devam edebilirsiniz.)*
+
+---
+
+## 💻 Geliştirici Kurulumu (Kaynak Kod)
+
+Eğer kodu incelemek veya geliştirmek isterseniz:
+
+1.  Projeyi klonlayın.
 2.  Gerekli kütüphaneleri yükleyin:
     ```bash
     pip install -r requirements.txt
@@ -29,7 +43,6 @@
     ```bash
     python main.py
     ```
-    *Veya hazır `START_V2.bat` dosyasını kullanın.*
 
 ---
 
