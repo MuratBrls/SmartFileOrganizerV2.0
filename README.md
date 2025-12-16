@@ -61,7 +61,7 @@ Programı iki farklı şekilde kullanabilirsiniz: **Program Arayüzü** ile veya
 
 1.  **Manuel Temizlik:**
     *   Programı açın. **"Seç"** butonu ile karışık olan klasörü (örneğin "İndirilenler") seçin.
-    *   **"Şimdi Temizle"** butonuna basın. Saniyeler içinde tüm dosyalar türlerine göre alt klasörlere ayrılacaktır.
+    *   **"Şimdi Düzenle"** butonuna basın. Saniyeler içinde tüm dosyalar türlerine göre alt klasörlere ayrılacaktır.
 
 2.  **Canlı Takip Modu (Otomasyon):**
     *   Bir klasör seçin (örneğin "Masaüstü").
@@ -141,7 +141,7 @@ Right-click the exe -> **Send to** -> **Desktop (create shortcut)** for easy acc
 
 ### A) Using the App Interface
 
-1.  **Manual Cleanup:** Select a folder using the "Select" button and click **"Clean Now"**.
+1.  **Manual Cleanup:** Select a folder using the "Select" button and click **"Organize Now"**.
 2.  **Live Monitoring:** Select a folder, toggle **"LIVE MONITORING"** on. You can then minimize the app to the System Tray; it will keep organizing that folder in the background.
 
 ### B) Using Right-Click Menus (Pro Mode)
