@@ -101,6 +101,14 @@ Program, çalıştığı klasörün içinde şu alt klasörleri oluşturur ve do
 | **📦 Arsivler** | `.zip`, `.rar`, `.7z`, `.tar`, `.gz`, `.iso` |
 | **💾 Programlar** | `.exe`, `.msi`, `.bat`, `.apk`, `.sh` |
 | **💻 Kodlama** | `.py`, `.js`, `.html`, `.css`, `.json`, `.sql`, `.xml`, `.cpp` |
+| **🎨 Adobe Photoshop** | `.psd` |
+| **🎬 Adobe Premiere** | `.prproj`, `.prel` |
+| **✒️ Adobe Illustrator** | `.ai` |
+| **🎥 Adobe After Effects** | `.aep` |
+| **📖 Adobe InDesign** | `.indd` |
+| **📱 Adobe XD** | `.xd` |
+| **🧊 Blender** | `.blend`, `.blend1` |
+| **💎 Sketch** | `.sketch` |
 
 ---
 ---

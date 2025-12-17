@@ -20,7 +20,15 @@ EXTENSIONS = {
     "Muzik": [".mp3", ".wav", ".aac", ".flac", ".ogg", ".wma", ".m4a"],
     "Arsivler": [".zip", ".rar", ".7z", ".tar", ".gz", ".iso"],
     "Programlar": [".exe", ".msi", ".bat", ".sh", ".apk"],
-    "Kodlama": [".py", ".js", ".html", ".css", ".cpp", ".json", ".xml", ".sql"]
+    "Kodlama": [".py", ".js", ".html", ".css", ".cpp", ".json", ".xml", ".sql"],
+    "Adobe Photoshop": [".psd"],
+    "Adobe Premiere": [".prproj", ".prel"],
+    "Adobe Illustrator": [".ai"],
+    "Adobe After Effects": [".aep"],
+    "Adobe InDesign": [".indd"],
+    "Adobe XD": [".xd"],
+    "Blender": [".blend", ".blend1"],
+    "Sketch": [".sketch"]
 }
 
 # Global Port for Single Instance IPC
